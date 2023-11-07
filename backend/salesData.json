@@ -1,0 +1,22 @@
+[
+{
+  "model": "real_time_app.sale",
+  "pk": 1,
+  "fields": {
+    "sale_total": "50.000",
+    "sale_qty": 50,
+    "sale_item_name": "Coffee Pot",
+    "emp_name": "Jaedyn"
+  }
+},
+{
+  "model": "real_time_app.sale",
+  "pk": 2,
+  "fields": {
+    "sale_total": "5.000",
+    "sale_qty": 100,
+    "sale_item_name": "Coffee",
+    "emp_name": "Jaedyn"
+  }
+}
+]

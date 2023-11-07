@@ -1,0 +1,22 @@
+[
+{
+  "model": "real_time_app.spent",
+  "pk": 1,
+  "fields": {
+    "spent_total": "1000.000",
+    "spent_qty": 5,
+    "spent_item_name": "Window's",
+    "catagory": "Modifications"
+  }
+},
+{
+  "model": "real_time_app.spent",
+  "pk": 2,
+  "fields": {
+    "spent_total": "50.000",
+    "spent_qty": 1,
+    "spent_item_name": "Gas",
+    "catagory": "Travel"
+  }
+}
+]
