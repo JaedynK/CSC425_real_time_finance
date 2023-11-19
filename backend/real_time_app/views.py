@@ -10,49 +10,32 @@ def send_to_homepage(request):
     theIndex = open('static/index.html').read()
     return HttpResponse(theIndex)
 
+# this is for all request sale
 @api_view(["GET", "POST"])
 def sale(request):
-    """
-        GET: Returns a list of all posts 
-        POST: Create a new category
-    """
-
     if request.method == 'GET':
         sales = Sale.objects.all()
-        sales_data = []
-
-        for sale in sales:
-            sale_data = {
-                "name": sale.sale_item_name,
-                "uv": float(sale.sale_total),
-                "pv": sale.sale_qty
-            }
-            sales_data.append(sale_data)
-
-        return Response(sales_data)
+        serializer = SaleSerializer(sales, many=True)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
         serializer = SaleSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data)
+            return Response(serializer.data, status=201)  # Return 201 Created on success
+        return Response(serializer.errors, status=400)  # Return 400 Bad Request on validation failure
 
+# this is for all request spent
 @api_view(["GET", "POST"])
 def spent(request):
-    """
-        GET: Returns a list of all posts 
-        POST: Create a new category
-    """
-
     if request.method == 'GET':
-        categories = Spent.objects.all()
-        serializer = SpentSerializer(categories, many=True )
-        cost_values = [item['spent_total'] for item in serializer.data]
-        return Response(cost_values)
-        
+        spents = Spent.objects.all()
+        serializer = SpentSerializer(spents, many=True)
+        return Response(serializer.data)
 
     elif request.method == 'POST':
-        serializer = SaleSerializer(data=request.data)
+        serializer = SpentSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-        return Response(serializer.data)
+            return Response(serializer.data, status=201)  # Return 201 Created on success
+        return Response(serializer.errors, status=400)  # Return 400 Bad Request on validation failure
